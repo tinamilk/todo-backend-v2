@@ -1,9 +1,6 @@
-import { Repository } from 'typeorm';
-import { Task } from '../entities/tasks.entity';
+import { Task } from '../entities/task-entity.js';
 export declare class TasksService {
-    private tasksRepository;
-    constructor(tasksRepository: Repository<Task>);
-    findAll(): Promise<Task[]>;
-    findOne(id: string): Promise<Task>;
-    remove(id: string): Promise<void>;
+    private readonly tasks;
+    create(task: Task): void;
+    findAll(): Task[];
 }
