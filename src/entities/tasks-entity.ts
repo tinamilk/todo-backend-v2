@@ -6,11 +6,13 @@ import {
   UpdateDateColumn,
   ManyToOne,
 } from 'typeorm';
-// import { User } from './user-entity.js';
-import { User }  from './user-entity.js'
 
-@Entity('task')
+import { User } from './users-entity.js';
+
+@Entity('tasks')
 export class Task {
+  public static tableName: 'tasks';
+
   @PrimaryGeneratedColumn('uuid')
   taskId: string;
 
@@ -26,6 +28,6 @@ export class Task {
   @UpdateDateColumn()
   updated_at: Date;
 
-  @ManyToOne(() => User, (user) => user.tasks)
-  user: User;
+  // @ManyToOne(() => User, (user) => user)
+  // userId: User;
 }

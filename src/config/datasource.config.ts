@@ -1,6 +1,4 @@
 import { DataSource } from 'typeorm';
-import { User } from '../entities/user-entity';
-import { Task } from '../entities/task-entity';
 
 const AppDataSource = new DataSource({
   type: 'postgres',
@@ -10,9 +8,7 @@ const AppDataSource = new DataSource({
   password: 'password123',
   database: 'todo_base',
   entities: ['dist/src/entities/*{.ts,.js}'],
-  // entities: [User, Task],
-  migrations: ['dist/src/migrations/{.ts,.js}'],
-  // migrationsTableName: 'tasks'
+  migrations: ['src/migrations/*{.ts,.js}'],
 });
 
 AppDataSource.initialize()
@@ -23,5 +19,4 @@ AppDataSource.initialize()
     console.error('Error during Data Source initialization', err);
   });
 
-export default AppDataSource
-
+export default AppDataSource;

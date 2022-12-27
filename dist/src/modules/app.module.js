@@ -31,7 +31,7 @@ AppModule = __decorate([
             typeorm_module_js_1.TypeOrmModule,
         ],
         controllers: [app_controller_js_1.AppController, tasks_controller_js_1.TasksController, users_controller_js_1.UsersController],
-        providers: [app_service_js_1.AppService, tasks_service_js_1.TasksService, users_service_js_1.UsersService,],
+        providers: [app_service_js_1.AppService, tasks_service_js_1.TasksService, users_service_js_1.UsersService],
     })
 ], AppModule);
 exports.AppModule = AppModule;

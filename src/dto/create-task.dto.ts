@@ -1,4 +1,4 @@
-import { User } from "../entities/user-entity.js"
+import { User } from "../entities/users-entity.js"
 
 export class CreateTaskDto {
     readonly title: string
@@ -6,5 +6,5 @@ export class CreateTaskDto {
     readonly taskId: string
     readonly created_at: Date
     readonly updated_at: Date
-    readonly user: User
+    readonly userId: User
 }

@@ -13,7 +13,6 @@ import { TasksService } from '../services/tasks.service.js';
 
 config();
 
-
 @Module({
   imports: [
     TasksModule,
@@ -22,6 +21,6 @@ config();
     TypeOrmModule,
   ],
   controllers: [AppController, TasksController, UsersController],
-  providers: [AppService, TasksService, UsersService,],
+  providers: [AppService, TasksService, UsersService],
 })
 export class AppModule {}

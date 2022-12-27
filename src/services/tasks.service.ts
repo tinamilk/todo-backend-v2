@@ -1,17 +1,20 @@
-import { Get, Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { Task } from '../entities/task-entity.js';
+import { Injectable } from '@nestjs/common';
+import { Task } from '../entities/tasks-entity.js';
+import AppDataSource from '../config/datasource.config.js';
+
+const TaskRepositoty = AppDataSource.getRepository(Task);
+const TaskManger = AppDataSource.manager;
 
 @Injectable()
 export class TasksService {
-    private readonly tasks: Task[] = [];
+  private readonly tasks: Task[] = [];
 
   create(task: Task) {
-    this.tasks.push(task)
+    TaskRepositoty.save({ title: task.title });
   }
 
-  findAll(): Task[] {
-    return this.tasks
-  }
+  // findAll(): Promise<Task[]> {
+  //   // return this.tasks;
+  //   // return getConnection().manager.find(Task);
+  // }
 }

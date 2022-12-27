@@ -9,7 +9,7 @@ const AppDataSource = new typeorm_1.DataSource({
     password: 'password123',
     database: 'todo_base',
     entities: ['dist/src/entities/*{.ts,.js}'],
-    migrations: ['dist/src/migrations/{.ts,.js}'],
+    migrations: ['src/migrations/*{.ts,.js}'],
 });
 AppDataSource.initialize()
     .then(() => {

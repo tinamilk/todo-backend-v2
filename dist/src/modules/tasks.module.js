@@ -18,7 +18,7 @@ TasksModule = __decorate([
         imports: [typeorm_1.TypeOrmModule.forFeature()],
         providers: [tasks_service_js_1.TasksService],
         controllers: [tasks_controller_js_1.TasksController],
-        exports: [tasks_service_js_1.TasksService]
+        exports: [tasks_service_js_1.TasksService],
     })
 ], TasksModule);
 exports.TasksModule = TasksModule;

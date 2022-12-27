@@ -16,7 +16,7 @@ UsersModule = __decorate([
     (0, common_1.Module)({
         providers: [users_service_js_1.UsersService],
         controllers: [users_controller_js_1.UsersController],
-        exports: [users_service_js_1.UsersService]
+        exports: [users_service_js_1.UsersService],
     })
 ], UsersModule);
 exports.UsersModule = UsersModule;

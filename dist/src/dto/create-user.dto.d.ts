@@ -1,4 +1,4 @@
-import { Task } from "src/entities/task-entity";
+import { Task } from '../entities/tasks-entity.js';
 export declare class CreateUserDto {
     readonly login: string;
     readonly email: string;
