@@ -9,26 +9,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TasksService = void 0;
+exports.IsUniquePipe = void 0;
 const common_1 = require("@nestjs/common");
 const tasks_entity_js_1 = require("../entities/tasks-entity.js");
 const datasource_config_js_1 = __importDefault(require("../config/datasource.config.js"));
-const TaskRepository = datasource_config_js_1.default.getRepository(tasks_entity_js_1.Task);
-let TasksService = class TasksService {
-    findAll() {
-        return TaskRepository.find({
-            select: {
-                done: false,
-            },
+let IsUniquePipe = class IsUniquePipe {
+    async transform(value) {
+        const TaskRepository = datasource_config_js_1.default.getRepository(tasks_entity_js_1.Task);
+        const duplicatedTask = await TaskRepository.findOneBy({
+            title: value,
         });
-    }
-    async create(task) {
-        await TaskRepository.save({ title: task.title });
-        return task;
+        if (duplicatedTask) {
+            throw new common_1.BadRequestException('Task with the same name exists');
+        }
+        return value;
     }
 };
-TasksService = __decorate([
+IsUniquePipe = __decorate([
     (0, common_1.Injectable)()
-], TasksService);
-exports.TasksService = TasksService;
-//# sourceMappingURL=tasks.service.js.map
+], IsUniquePipe);
+exports.IsUniquePipe = IsUniquePipe;
+//# sourceMappingURL=isUnique.pipe.js.map

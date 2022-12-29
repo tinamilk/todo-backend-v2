@@ -11,22 +11,47 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TasksController = void 0;
 const common_1 = require("@nestjs/common");
 const create_task_dto_js_1 = require("../dto/create-task.dto.js");
+const tasks_entity_js_1 = require("../entities/tasks-entity.js");
 const tasks_service_js_1 = require("../services/tasks.service.js");
+const datasource_config_js_1 = __importDefault(require("../config/datasource.config.js"));
 let TasksController = class TasksController {
     constructor(usersService) {
         this.usersService = usersService;
     }
+    async findAll() {
+        return this.usersService.findAll();
+    }
     async create(createTaskDto) {
-        this.usersService.create(createTaskDto);
+        return this.usersService.create(createTaskDto);
     }
 };
 __decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], TasksController.prototype, "findAll", null);
+__decorate([
     (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)()),
+    __param(0, (0, common_1.Body)({
+        async transform(value) {
+            const TaskRepository = datasource_config_js_1.default.getRepository(tasks_entity_js_1.Task);
+            const duplicatedTask = await TaskRepository.findOneBy({
+                title: value.title,
+            });
+            if (duplicatedTask) {
+                throw new common_1.BadRequestException('Task with the same name exists');
+            }
+            return value;
+        },
+    })),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_task_dto_js_1.CreateTaskDto]),
     __metadata("design:returntype", Promise)

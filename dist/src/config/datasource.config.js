@@ -10,6 +10,7 @@ const AppDataSource = new typeorm_1.DataSource({
     database: 'todo_base',
     entities: ['dist/src/entities/*{.ts,.js}'],
     migrations: ['src/migrations/*{.ts,.js}'],
+    synchronize: true,
 });
 AppDataSource.initialize()
     .then(() => {
